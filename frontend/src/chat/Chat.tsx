@@ -25,8 +25,11 @@ const Chat: React.FC = () => {
     setInput("");
     setLoading(true);
 
+    const API_KEY = import.meta.env.VITE_API_URL
+    console.log('API URL', API_KEY);
+
     try {
-      const response = await axios.post("https://ai-react-app-production.up.railway.app", {
+      const response = await axios.post(API_KEY, {
         message: input,
       });
       const botMessage: Message = {

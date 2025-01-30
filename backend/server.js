@@ -7,6 +7,16 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get("/", (req, res) => {
+    res.json({ message: "Hello from backend!" });
+  });
+  
+  module.exports = app; 
+  
+  if (require.main === module) {
+    app.listen(5000, () => console.log("Server running on port 5000"));
+  }
+
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 

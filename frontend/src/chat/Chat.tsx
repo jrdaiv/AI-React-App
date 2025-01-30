@@ -26,7 +26,7 @@ const Chat: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://ai-react-app-blush.vercel.app", {
+      const response = await axios.post("https://ai-react-app-blush.vercel.app/api/chat", {
         message: input,
       });
       const botMessage: Message = {

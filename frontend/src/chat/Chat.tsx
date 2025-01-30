@@ -26,7 +26,7 @@ const Chat: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post("https://ai-react-app-blush.vercel.app/api/chat", {
+      const response = await axios.post("http://localhost:5000/chat", {
         message: input,
       });
       const botMessage: Message = {
@@ -52,7 +52,7 @@ const Chat: React.FC = () => {
               }`}
             >
               <div
-                className={`p-3 max-w-[75%] rounded-lg ${
+                className={`p-2 max-w-[75%] rounded-2xl ${
                   message.role === "user"
                     ? "bg-black border border-gray-300 text-gray-200 rounded-bl-none" // User message (left)
                     : "bg-black border border-gray-300 text-gray-200 rounded-br-none" // AI message (right)

@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
   res.send("Backend is now running! ");
 });
 
+
 app.get("/api/data", (req, res) => {
   res.json({ message: "API is working!" });
 });

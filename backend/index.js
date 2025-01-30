@@ -11,6 +11,11 @@ app.use(cors());
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
+app.get("/", (req, res) => {
+  res.send("Backend is now running! ");
+});
+
+
 app.post("/chat", async (req, res) => {
   try {
     const { message } = req.body;

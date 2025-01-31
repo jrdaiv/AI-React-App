@@ -5,7 +5,11 @@ const axios = require("axios");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "*",  // Allow requests from anywhere (for development)
+  methods: ["GET", "POST"]
+}));
+
 
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
@@ -25,6 +29,10 @@ app.post("/chat", async (req, res) => {
   try {
     const { message } = req.body;
 
+    if (!message) {
+      return res.status(400).json({ error: "Message is required" });
+    }
+
     const response = await axios.post(
       GEMINI_API_URL,
       {
@@ -33,13 +41,20 @@ app.post("/chat", async (req, res) => {
       { headers: { "Content-Type": "application/json" } }
     );
 
-    const botResponse = response.data.candidates[0].content.parts[0].text;
+    // Check if response data exists
+    if (!response.data.candidates || response.data.candidates.length === 0) {
+      return res.status(500).json({ error: "Invalid response from Gemini API" });
+    }
+
+    const botResponse = response.data.candidates[0]?.content?.parts?.[0]?.text || "No response from AI";
+
     res.json({ reply: botResponse });
   } catch (error) {
     console.error("Error:", error.response?.data || error.message);
     res.status(500).json({ error: "Oops, something went wrong. Please try again" });
   }
 });
+
 
 
 const PORT = process.env.PORT || 5000;

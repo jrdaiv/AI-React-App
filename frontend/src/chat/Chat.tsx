@@ -31,7 +31,6 @@ const Chat: React.FC = () => {
 
     try {
       const response = await axios.post(`${API_URL}/chat`, {
-        // ✅ Append /chat
         message: input,
       });
 

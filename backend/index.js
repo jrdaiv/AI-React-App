@@ -28,15 +28,9 @@ app.post("/chat", async (req, res) => {
     const response = await axios.post(
       GEMINI_API_URL,
       {
-        contents: [
-          {
-            parts: [{ text: message }],
-          },
-        ],
+        contents: [{ parts: [{ text: message }] }],
       },
-      {
-        headers: { "Content-Type": "application/json" },
-      }
+      { headers: { "Content-Type": "application/json" } }
     );
 
     const botResponse = response.data.candidates[0].content.parts[0].text;
@@ -46,6 +40,7 @@ app.post("/chat", async (req, res) => {
     res.status(500).json({ error: "Oops, something went wrong. Please try again" });
   }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

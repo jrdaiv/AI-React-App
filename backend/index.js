@@ -5,11 +5,14 @@ const axios = require("axios");
 
 const app = express();
 app.use(express.json());
+
 app.use(cors({
-  origin: "https://ai-react-app-beige.vercel.app/",
+  origin: "https://ai-react-app-beige.vercel.app", // ✅ Only allow frontend requests
   methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
   credentials: true
 }));
+
 
 
 

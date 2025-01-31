@@ -6,9 +6,11 @@ const axios = require("axios");
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: "*",  // Allow requests from anywhere (for development)
-  methods: ["GET", "POST"]
+  origin: "https://ai-react-app-beige.vercel.app/",
+  methods: ["GET", "POST"],
+  credentials: true
 }));
+
 
 
 
